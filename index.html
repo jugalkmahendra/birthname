@@ -1,0 +1,108 @@
+<script>
+<script>
+
+var names = [
+    {
+        "Nakshatra" : "Uttara Phalguni",
+        "Start_Time":"18/12/2019 12:30",
+        "End_Time":"19/12/2019 11:04",
+        "Alphabets":"Te, Ta, Taa, To, Pa, Paa, Pi, Pee",
+        "Boy_Name":"Prithvik",
+        "Girl_Name":"Pavishka,Tanvika"
+    },
+     {
+        "Nakshatra" : "Hasta",
+        "Start_Time":"19/12/2019 11:04",
+        "End_Time":"20/12/2019 09:39",
+        "Alphabets":"Pu, Sha, Shaa, Na, Poo, Tha",
+        "Boy_Name":"Prithvik",
+        "Girl_Name":"Shathvika,Sadhika"
+    },
+     {
+        "Nakshatra" : "Chitra",
+        "Start_Time":"20/12/2019 09:39",
+        "End_Time":"21/12/2019 08:19",
+        "Alphabets":"Pe, Po, Ra, Raa, Ri, Ree",
+        "Boy_Name":"Rachet",
+        "Girl_Name":"Rasika,Rishika"
+    },
+     {
+        "Nakshatra" : "Swati",
+        "Start_Time":"21/12/2019 08:19",
+        "End_Time":"22/12/2019 07:08",
+        "Alphabets":"Ru, Re, Ro, Roo, Ta, Taa",
+        "Boy_Name":"Reyansh",
+        "Girl_Name":"Ruthika"
+    },
+     {
+        "Nakshatra" : "Vishaka",
+        "Start_Time":"22/12/2019 07:08",
+        "End_Time":"23/12/2019 06:10",
+        "Alphabets":"Ti, Tee, Too, Te, Tu, Tae, To",
+        "Boy_Name":"Tejansh",
+        "Girl_Name":"Tushika"
+    }
+];
+</script>
+<div>
+
+ <h1> 👦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="Boy"/></h1>
+ <h1> 👧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="Girl"></h1>
+<br/>
+  <br/>
+  <br/>
+   <h3>Current Time: <span id="currTime"/></h3>
+  <h3>Nakshtra: <span id="Nakshtra"/></h3>
+  <h3>Start time: <span id="Start"/></h3>
+  <h3>End Time: <span id="End"/></h3>
+  
+</div>
+<style>
+body {
+  background: #161616;
+  color: #bdbdbd;
+  font-weight: 300;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Helvetica neue, roboto;
+}
+
+img {
+  width: 56px;
+  height: 48px;
+}
+
+h1 {
+  font-weight: 200;
+  font-style: 26px;
+  margin: 10px;
+}
+</style>
+<script>
+
+var offset = -6;
+var curr = new Date().getTime() + offset * 3600 * 1000; 
+var selected = names.filter(check);
+function check(name) {
+    var start = name.Start_Time.match(/(\d+)\/(\d+)\/(\d+) (\d+):(\d+)/);
+    var startTS = new Date(start[3],start[2]-1,start[1],start[4],start[5]).getTime() + offset * 3600 * 1000;
+    name.Start_Time=new Date(startTS).toUTCString().replace( / GMT$/, "" );
+    var end = name.End_Time.match(/(\d+)\/(\d+)\/(\d+) (\d+):(\d+)/);
+    var endTS = new Date(end[3],end[2]-1,end[1],end[4],end[5]).getTime() + offset * 3600 * 1000;
+    name.End_Time=new Date(endTS).toUTCString().replace( / GMT$/, "" );
+ 
+    return curr >= startTS && curr < endTS;
+}
+
+
+document.getElementById("Boy").innerHTML=selected[0].Boy_Name;
+document.getElementById("Girl").innerHTML=selected[0].Girl_Name;
+document.getElementById("currTime").innerHTML=new Date(curr).toUTCString().replace( / GMT$/, "" );
+document.getElementById("Nakshtra").innerHTML=selected[0].Nakshatra;
+document.getElementById("Start").innerHTML=selected[0].Start_Time;
+document.getElementById("End").innerHTML=selected[0].End_Time;
+
+</script>
