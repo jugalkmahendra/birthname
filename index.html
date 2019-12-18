@@ -84,6 +84,7 @@ h1 {
 <script>
 
 var offset = -6;
+var curr;
 function check(name) {
     var start = name.Start_Time.match(/(\d+)\/(\d+)\/(\d+) (\d+):(\d+)/);
     var startTS = new Date(start[3],start[2]-1,start[1],start[4],start[5]).getTime() + offset * 3600 * 1000;
@@ -96,7 +97,7 @@ function check(name) {
 }
 
 $(function() {
- var curr = new Date().getTime() + offset * 3600 * 1000; 
+ curr = new Date().getTime() + offset * 3600 * 1000; 
 var selected = names.filter(check);
 $('#Boy').html();
 $('#Girl').html(selected[0].Girl_Name);
