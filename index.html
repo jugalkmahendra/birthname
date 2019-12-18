@@ -84,8 +84,6 @@ h1 {
 <script>
 
 var offset = -6;
-var curr = new Date().getTime() + offset * 3600 * 1000; 
-var selected = names.filter(check);
 function check(name) {
     var start = name.Start_Time.match(/(\d+)\/(\d+)\/(\d+) (\d+):(\d+)/);
     var startTS = new Date(start[3],start[2]-1,start[1],start[4],start[5]).getTime() + offset * 3600 * 1000;
@@ -97,12 +95,14 @@ function check(name) {
     return curr >= startTS && curr < endTS;
 }
 
-
-document.getElementById("Boy").innerHTML=selected[0].Boy_Name;
-document.getElementById("Girl").innerHTML=selected[0].Girl_Name;
-document.getElementById("currTime").innerHTML=new Date(curr).toUTCString().replace( / GMT$/, "" );
-document.getElementById("Nakshtra").innerHTML=selected[0].Nakshatra;
-document.getElementById("Start").innerHTML=selected[0].Start_Time;
-document.getElementById("End").innerHTML=selected[0].End_Time;
-
+$(function() {
+ var curr = new Date().getTime() + offset * 3600 * 1000; 
+var selected = names.filter(check);
+$('#Boy').html();
+$('#Girl').html(selected[0].Girl_Name);
+$('#currTime').html(new Date(curr).toUTCString().replace( / GMT$/, "" ));
+$('#Nakshtra').html(selected[0].Nakshatra);
+$('#Start').html(selected[0].Start_Time);
+$('#End').html(selected[0].End_Time);
+});
 </script>
