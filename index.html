@@ -99,7 +99,7 @@ function check(name) {
 $(function() {
  curr = new Date().getTime() + offset * 3600 * 1000; 
 var selected = names.filter(check);
-$('#Boy').html();
+$('#Boy').html(selected[0].Boy_Name);
 $('#Girl').html(selected[0].Girl_Name);
 $('#currTime').html(new Date(curr).toUTCString().replace( / GMT$/, "" ));
 $('#Nakshtra').html(selected[0].Nakshatra);
