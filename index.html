@@ -1,5 +1,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="//cdn.rawgit.com/lil-js/uri/0.2.2/uri.js"></script>
 
 <script>
 
@@ -127,12 +126,21 @@ function check(name) {
  
     return curr >= startTS && curr < endTS;
 }
+    function getQueryVariable(variable) {
+	var query = window.location.search.substring(1);
+	var vars = query.split("&");
+	for (var i=0;i<vars.length;i++) {
+		var pair = vars[i].split("=");
+		if(pair[0] == variable){return pair[1];}
+	}
+	return(false);
+}
 
 $(function() {
 var query = uri(location.search).query();
-var frease = query['frease'];
-var isBoy = query['boy'] && query['boy'];
-var isGirl = query['girl'] && query['girl'];
+var frease = getQueryVariable('frease');
+var isBoy = getQueryVariable('boy');
+var isGirl = getQueryVariable('girl');
 curr = new Date().getTime() + offset * 3600 * 1000; 
 var selected = names.filter(check);
 $('#Boy').html(selected[0].Boy_Name);
