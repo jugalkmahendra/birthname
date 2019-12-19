@@ -76,7 +76,7 @@ var names = [
 <br/>
   <br/>
      
-     <h1 id="console"/>
+	 <h1 id="console"></h1>
   <br/>
    <h3>Current Time: <span id="currTime"/></h3>
   <h3>Nakshtra: <span id="Nakshtra"/></h3>
@@ -135,19 +135,39 @@ function check(name) {
 	}
 	return(false);
 }
+var finalName,isBoy,isGirl;
 
 $(function() {
-var frease = getQueryVariable('frease');
-var isBoy = getQueryVariable('boy');
-var isGirl = getQueryVariable('girl');
-curr = new Date().getTime() + offset * 3600 * 1000; 
 var selected = names.filter(check);
+frease = getQueryVariable('frease');
+unFrease = getQueryVariable('unFrease');
+isBoy = getQueryVariable('boy');
+isGirl = getQueryVariable('girl');
+if(unFrease) {
+	delete this.finalName;
+	delete this.isBoy;
+	delete this.isGirl;
+}
+if (frease) {
+    finalName = selected[0];	
+}
+if (finalName) {	 
+if (isBoy){
+	 $('#console').html('<img src="boy.jpg"/>'+finalName.Boy_Name);
+}
+if(isGirl){
+	 $('#console').html('<img src="girl.jpg"/>'+finalName.Girl_Name);
+}
+}
+ else {
+curr = new Date().getTime() + offset * 3600 * 1000; 
+
 $('#Boy').html(selected[0].Boy_Name);
 $('#Girl').html(selected[0].Girl_Name);
 $('#currTime').html(new Date(curr).toUTCString().replace( / GMT$/, "" ));
 $('#Nakshtra').html(selected[0].Nakshatra);
 $('#Start').html(selected[0].Start_Time);
 $('#End').html(selected[0].End_Time);
-$('#console').html("frease=>"+frease + ": isBoy=>"+isBoy+": isGirl=>"+isGirl);
+}
 });
 </script>
