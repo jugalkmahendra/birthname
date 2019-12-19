@@ -75,9 +75,7 @@ var names = [
  <h1> 👧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="Girl"></h1>
 <br/>
   <br/>
-     
-	 <h1 id="console"></h1>
-  <br/>
+       <br/>
    <h3>Current Time: <span id="currTime"/></h3>
   <h3>Nakshtra: <span id="Nakshtra"/></h3>
   <h3>Start time: <span id="Start"/></h3>
@@ -126,48 +124,14 @@ function check(name) {
  
     return curr >= startTS && curr < endTS;
 }
-    function getQueryVariable(variable) {
-	var query = window.location.search.substring(1);
-	var vars = query.split("&");
-	for (var i=0;i<vars.length;i++) {
-		var pair = vars[i].split("=");
-		if(pair[0] == variable){return pair[1];}
-	}
-	return(false);
-}
-var finalName,isBoy,isGirl;
-
 $(function() {
 curr = new Date().getTime() + offset * 3600 * 1000; 
 var selected = names.filter(check);
-frease = getQueryVariable('frease');
-unFrease = getQueryVariable('unFrease');
-isBoy = getQueryVariable('boy');
-isGirl = getQueryVariable('girl');
-if(unFrease) {
-	delete this.finalName;
-	delete this.isBoy;
-	delete this.isGirl;
-}
-if (frease) {
-    finalName = selected[0];	
-}
-	console.log(frease+":"+unFrease+":"+isBoy+":"+isGirl+":"+finalName);
-if (finalName !== undefined) {	 
-if (isBoy){
-	 $('#console').html('<img src="boy.jpg"/>'+finalName.Boy_Name);
-}
-if(isGirl){
-	 $('#console').html('<img src="girl.jpg"/>'+finalName.Girl_Name);
-}
-}
- else {
 $('#Boy').html(selected[0].Boy_Name);
 $('#Girl').html(selected[0].Girl_Name);
 $('#currTime').html(new Date(curr).toUTCString().replace( / GMT$/, "" ));
 $('#Nakshtra').html(selected[0].Nakshatra);
 $('#Start').html(selected[0].Start_Time);
 $('#End').html(selected[0].End_Time);
-}
 });
 </script>
