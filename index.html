@@ -138,6 +138,7 @@ function check(name) {
 var finalName,isBoy,isGirl;
 
 $(function() {
+curr = new Date().getTime() + offset * 3600 * 1000; 
 var selected = names.filter(check);
 frease = getQueryVariable('frease');
 unFrease = getQueryVariable('unFrease');
@@ -161,8 +162,6 @@ if(isGirl){
 }
 }
  else {
-curr = new Date().getTime() + offset * 3600 * 1000; 
-
 $('#Boy').html(selected[0].Boy_Name);
 $('#Girl').html(selected[0].Girl_Name);
 $('#currTime').html(new Date(curr).toUTCString().replace( / GMT$/, "" ));
